@@ -1,0 +1,25 @@
+<%- include('../partials/adminheader') %>
+<h1>Give Advice to <%= user.name %></h1>
+
+<form action="/advices" method="POST">
+    <div>
+        <label for="user">ID: </label>
+        <input type="text" name="user" value="<%= user.id %>">
+    </div>
+    <div>
+        <label for="workout">Workout details: </label>
+        <br>
+        <textarea name="workout" id="workout" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <label for="diet">Diet details: </label>
+        <br>
+        <textarea name="diet" id="diet" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <label for="others">Others: </label>
+        <br>
+        <textarea name="others" id="others" cols="30" rows="10"></textarea>
+    </div>
+    <button type="submit">Submit</button>
+</form>

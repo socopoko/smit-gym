@@ -1,0 +1,16 @@
+<%- include('../partials/adminheader') %>
+<h1>User Details of <%= user.name %></h1>
+<p>
+<% for(let detail of details){%>
+    Date: <%= detail.date %>
+    <br>
+    BMI: <%= detail.bmi %>
+    <br>
+    Goals: <%= detail.goals %>
+    <br>
+    Others: <%= detail.others %>
+    <hr>
+<% } %>
+</p>
+
+

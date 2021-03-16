@@ -1,0 +1,14 @@
+<%- include('../partials/adminheader') %>
+<%- include ('../partials/messages') %>
+<h1>Display All Users</h1>
+
+<% for(let user of users) { %>
+    <div>
+        <%= user.name %>
+        <a href="/users/<%= user.id %>/details">Details</a>
+        <a href="/users/<%= user.id %>/advices/new">Give Advice</a>
+        <a href="/users/<%= user.id %>/advices">Past Advices</a>
+    </div>
+    
+    <hr>
+<% } %>

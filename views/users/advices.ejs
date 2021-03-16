@@ -1,0 +1,13 @@
+<%- include('../partials/adminheader') %>
+<h1>Past advices given to <%= user.name %></h1>
+
+<% for(let advice of advices) { %>
+   Date: <%= advice.date %>
+   <br>
+   Workout: <%= advice.workout %>
+   <br>
+   Diet: <%= advice.diet %>
+   <br>
+   Others: <%= advice.others %>
+   <hr>
+<% } %>

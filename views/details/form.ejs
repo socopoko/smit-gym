@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+<h1><%= user.name %> can send details to the trainer</h1>
+
+<form action="/details/new" method="POST">
+    <div>
+        <label for="bmi">BMI: </label>
+        <input type="number" name="bmi">
+    </div>
+    <div>
+        <label for="goals">Goals: </label>
+        <input type="text" name="goals">
+    </div>
+    <div>
+        <label for="others">Others:</label>
+        <input type="text" name="others">
+    </div>
+    <button type="submit">Submit</button>
+</form>

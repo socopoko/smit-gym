@@ -1,0 +1,11 @@
+<%- include('../partials/adminheader') %>
+<h1>Admin Dashboard</h1>
+<p> Welcome <%= user.name %> </p>
+
+<form action="/counter" method="POST">
+    <label for="count">Counter</label>
+    <input type="number" name="count" id="count">
+    <button type="submit">Submit</button>
+</form>
+
+<h1>Gym Counter: <%= counter[0].count %></h1>

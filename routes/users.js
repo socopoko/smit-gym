@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
+const Advice = require('../models/advice')
+const Detail = require('../models/advice')
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const authenticate = require('../config/auth')
 
-//login handle
+// login handle
 router.route('/login')
     .get((req, res) => {
         res.render('login')
@@ -27,7 +30,7 @@ router.route('/register')
         const { name, email, password, password2 } = req.body
         let errors = [];
 
-        console.log('Name: ' + name + ' email: ' + email + ' password: ' + password)
+        // console.log('Name: ' + name + ' email: ' + email + ' password: ' + password)
 
         if (!name || !email || !password || !password2) {
             errors.push({msg: "Please fill in all fields"})
@@ -54,7 +57,7 @@ router.route('/register')
         } else {
             // validation passed
             User.findOne({email: email}).exec((err, user) => {
-                console.log(user);
+                // console.log(user);
                 if(user) {
                     errors.push({msg: 'Email already registered'});
                     res.render('register', {errors, name, email, password, password2})
@@ -78,7 +81,6 @@ router.route('/register')
                                 newUser
                                     .save()
                                     .then((value) => {
-                                        console.log(value)
                                         req.flash('success_msg', 'You have now registered!')
                                         res.redirect('/users/login');
                                     })
@@ -96,5 +98,47 @@ router.route('/logout')
         req.flash('success_msg', 'Logged out');
         res.redirect('/users/login');
     })
+
+// all users (admin)
+router.route('/')
+    .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
+        const users = await User.find({ "admin": false })
+        res.render('./users/show.ejs', { users })
+    })
+
+// user page (admin)
+router.route('/:id/details')
+    .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
+        try {
+            const user = await User.findById(req.params.id)
+            const details = await Detail.find({ user: req.params.id })
+            res.render('./users/details.ejs', { user: user, details: details })
+        } catch {
+            res.redirect('/users')
+        }
+    })
+
+router.route('/:id/advices')
+    .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
+        try {
+            const user = await User.findById(req.params.id)
+            const advices = await Advice.find({ user: req.params.id })
+            res.render('./users/advices.ejs', { user: user, advices: advices })
+        } catch {
+            res.redirect('/users')
+        }
+    })
+
+router.route('/:id/advices/new')
+    .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
+        try {
+            const user = await User.findById(req.params.id)
+            res.render('./advice/form.ejs', { user: user })
+        } catch {
+            res.redirect('/users')
+        }
+    })
+    
+
 
 module.exports = router

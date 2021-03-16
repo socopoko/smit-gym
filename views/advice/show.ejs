@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+<h1>Advices to <%= user.name %> given by trainer</h1>
+
+<% for(let advice of advices) { %>
+   Date: <%= advice.date %>
+   <br>
+   Workout: <%= advice.workout %>
+   <br>
+   Diet: <%= advice.diet %>
+   <br>
+   Others: <%= advice.others %>
+   <hr>
+<% } %>

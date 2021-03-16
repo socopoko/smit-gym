@@ -10,12 +10,14 @@ const passport = require('passport')
 require('./config/passport')(passport)
 
 // mongoose
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://localhost/smit-gym', {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => console.log('connected to mongoose'))
 .catch((err) => console.log(err))
 
 // EJS
 app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
+app.set('layout', 'layouts/layout')
 app.use(expressEjsLayout)
 
 // BodyParser
@@ -42,5 +44,11 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', require('./routes/index'))
 app.use('/users', require('./routes/users'))
+app.use('/dashboard', require('./routes/dashboard'))
+app.use('/videolibrary', require('./routes/videolibrary'))
+app.use('/advices', require('./routes/advices'))
+app.use('/details', require('./routes/details'))
+app.use('/subscription', require('./routes/subscriptions'))
+app.use('/counter',require('./routes/counter') )
 
 app.listen(3000)

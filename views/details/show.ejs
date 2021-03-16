@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+<h1>Past Details of <%= user %></h1>
+
+<p>
+<% for(let detail of details){%>
+    Date: <%= detail.date %>
+    <br>
+    BMI: <%= detail.bmi %>
+    <br>
+    Goals: <%= detail.goals %>
+    <br>
+    Others: <%= detail.others %>
+    <br>
+    User: <%= detail.user.name %>
+    <hr>
+<% } %>
+</p>
