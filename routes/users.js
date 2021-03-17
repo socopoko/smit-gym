@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const Advice = require('../models/advice')
-const Detail = require('../models/advice')
+const Detail = require('../models/detail')
+const Subscriptions = require('../models/subscription')
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const authenticate = require('../config/auth')
@@ -30,8 +31,6 @@ router.route('/register')
         const { name, email, password, password2 } = req.body
         let errors = [];
 
-        // console.log('Name: ' + name + ' email: ' + email + ' password: ' + password)
-
         if (!name || !email || !password || !password2) {
             errors.push({msg: "Please fill in all fields"})
         }
@@ -57,7 +56,6 @@ router.route('/register')
         } else {
             // validation passed
             User.findOne({email: email}).exec((err, user) => {
-                // console.log(user);
                 if(user) {
                     errors.push({msg: 'Email already registered'});
                     res.render('register', {errors, name, email, password, password2})
@@ -102,17 +100,29 @@ router.route('/logout')
 // all users (admin)
 router.route('/')
     .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
-        const users = await User.find({ "admin": false })
-        res.render('./users/show.ejs', { users })
+        let query = User.find()
+        if(req.query.name != null && req.query.name != '') {
+            query = query.regex('name', new RegExp(req.query.name, 'i'))
+        }
+        if (req.query.email != null && req.query.email != '') {
+            query = query.regex('email', new RegExp(req.query.email, 'i'))
+        }
+        try {
+            const nonAdminUsers = await User.find({ "admin": false })
+            const users = await query.exec()
+            res.render('./users/show.ejs', { user: req.user, users, searchOptions: req.query })
+        } catch {
+            res.redirect('/')
+        }
     })
 
 // user page (admin)
 router.route('/:id/details')
     .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
         try {
-            const user = await User.findById(req.params.id)
+            const trainee = await User.findById(req.params.id)
             const details = await Detail.find({ user: req.params.id })
-            res.render('./users/details.ejs', { user: user, details: details })
+            res.render('./users/details.ejs', { trainee: trainee, details: details, user: req.user })
         } catch {
             res.redirect('/users')
         }
@@ -121,9 +131,9 @@ router.route('/:id/details')
 router.route('/:id/advices')
     .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
         try {
-            const user = await User.findById(req.params.id)
+            const trainee = await User.findById(req.params.id)
             const advices = await Advice.find({ user: req.params.id })
-            res.render('./users/advices.ejs', { user: user, advices: advices })
+            res.render('./users/advices.ejs', { trainee: trainee, advices: advices, user: req.user })
         } catch {
             res.redirect('/users')
         }
@@ -132,13 +142,24 @@ router.route('/:id/advices')
 router.route('/:id/advices/new')
     .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
         try {
-            const user = await User.findById(req.params.id)
-            res.render('./advice/form.ejs', { user: user })
+            const trainee = await User.findById(req.params.id)
+            res.render('./advice/form.ejs', { trainee: trainee, user: req.user  })
         } catch {
             res.redirect('/users')
         }
     })
     
+
+router.route('/:id/subscription')
+    .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
+        try {
+            const trainee = await User.findById(req.params.id)
+            const subscriptions = await Subscriptions.find({ user: req.params.id })
+            res.render('./users/subscription.ejs', { trainee: trainee, subscription: subscriptions[0], user: req.user })
+        } catch {
+            res.redirect('/users')
+        }
+    })
 
 
 module.exports = router

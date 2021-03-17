@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
+
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -10,7 +15,7 @@ const passport = require('passport')
 require('./config/passport')(passport)
 
 // mongoose
-mongoose.connect('mongodb://localhost/smit-gym', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => console.log('connected to mongoose'))
 .catch((err) => console.log(err))
 
@@ -51,4 +56,4 @@ app.use('/details', require('./routes/details'))
 app.use('/subscription', require('./routes/subscriptions'))
 app.use('/counter',require('./routes/counter') )
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)

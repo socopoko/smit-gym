@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+<h1>Dashboard</h1>
+<p> Welcome <%= user.name %> </p>
+
+<% if(user.admin) { %>
+    <form action="/counter" method="POST">
+        <label for="count">Counter</label>
+        <input type="number" name="count" id="count">
+        <button type="submit">Submit</button>
+    </form>
+<% } %>
+<% if(!user.admin) { %>
+    <% if (subscription == null) { %>
+        <h2>Subscription Status: ❌</h2>
+    <% } else if(subscription.date < subscription.expiry) { %>
+        <h2>Subscription Status: ✔ </h2>
+        <p>Expires on: <%= subscription.expiry.toDateString() %></p>
+    <% } else { %>
+        <h2>Subscription Status: ❌</h2>
+    <% } %>
+<% } %>
+<h1>Display Gym Counter: <%= counter[0].count %></h1>

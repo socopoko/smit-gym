@@ -1,0 +1,15 @@
+<!-- ADMIN ONLY -->
+<%- include('../partials/header') %>
+<h1>Subscription Details of <%= trainee.name %></h1>
+<p>
+    <% if (subscription == null) { %>
+        <h2>Subscription Status: ❌</h2>
+    <% } else if(subscription.date < subscription.expiry) { %>
+        <h2>Subscription Status: ✔ </h2>
+        <p>Expires on: <%= subscription.expiry.toDateString() %></p>
+    <% } else { %>
+        <h2>Subscription Status: ❌</h2>
+    <% } %>
+</p>
+
+

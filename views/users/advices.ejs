@@ -1,5 +1,6 @@
-<%- include('../partials/adminheader') %>
-<h1>Past advices given to <%= user.name %></h1>
+<!-- ADMIN ONLY -->
+<%- include('../partials/header') %>
+<h1>Past advices given to <%= trainee.name %></h1>
 
 <% for(let advice of advices) { %>
    Date: <%= advice.date %>

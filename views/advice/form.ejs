@@ -1,10 +1,10 @@
-<%- include('../partials/adminheader') %>
-<h1>Give Advice to <%= user.name %></h1>
+<!-- ADMIN ONLY -->
+<%- include('../partials/header') %>
+<h1>Give Advice to <%= trainee.name %></h1>
 
 <form action="/advices" method="POST">
     <div>
-        <label for="user">ID: </label>
-        <input type="text" name="user" value="<%= user.id %>">
+        <input type="text" name="user" value="<%= trainee.id %>" hidden>
     </div>
     <div>
         <label for="workout">Workout details: </label>

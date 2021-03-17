@@ -1,0 +1,13 @@
+<h1>Thank You</h1>
+<p>Your payment of Rs. <%= amount %> was successful.</p>
+
+<% var expiry = new Date() %>
+<% expiry.setDate(expiry.getDate() + (amount/400)*30) %>
+
+
+<form action="/subscription/new" method="POST">
+    <div>
+        <input type="text" name="expiry" value="<%= expiry %>" hidden>
+    </div>
+    <button type="submit">Return</button>
+</form>

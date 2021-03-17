@@ -1,14 +1,28 @@
-<%- include('../partials/adminheader') %>
+<!-- ADMIN ONLY -->
+<%- include('../partials/header') %>
 <%- include ('../partials/messages') %>
 <h1>Display All Users</h1>
-
-<% for(let user of users) { %>
+<form action="/users" method="GET">
     <div>
-        <%= user.name %>
-        <a href="/users/<%= user.id %>/details">Details</a>
-        <a href="/users/<%= user.id %>/advices/new">Give Advice</a>
-        <a href="/users/<%= user.id %>/advices">Past Advices</a>
-    </div>
+        <label for="name">Name</label>
+        <input type="text" name="name" value="<%= searchOptions.name %>">
     
-    <hr>
-<% } %>
+        <label for="email">Email</label>
+        <input type="text" name="email" value="<%= searchOptions.email %>">
+    
+        <button type="submit">Search</button>
+    </div>
+</form>
+
+<div>
+    <% for(let user of users) { %>
+        <div>
+            <%= user.name %>
+            <a href="/users/<%= user.id %>/subscription">Subscription</a>
+            <a href="/users/<%= user.id %>/details">Details</a>
+            <a href="/users/<%= user.id %>/advices/new">Give Advice</a>
+            <a href="/users/<%= user.id %>/advices">Past Advices</a>
+        </div>
+        <hr>
+    <% } %>
+</div>

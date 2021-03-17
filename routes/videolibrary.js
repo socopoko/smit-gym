@@ -5,7 +5,7 @@ const router = express.Router()
 
 // video library
 router.get('/', authenticate.ensureAuthenticated, (req, res) => {
-    res.render('./videolibrary/show.ejs')
+    res.render('./videolibrary/show.ejs', { user: req.user })
 })
 
 module.exports = router

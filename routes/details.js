@@ -7,7 +7,7 @@ const router = express.Router()
 router.route('/')
     .get(authenticate.ensureAuthenticated, async (req, res) => {
         const details = await Detail.find({ "user": req.user }).populate('user')
-        res.render('./details/show.ejs',{ user: req.user.name, details })
+        res.render('./details/show.ejs',{ user: req.user, details })
     })
     
     

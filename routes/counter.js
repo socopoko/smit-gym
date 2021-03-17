@@ -14,7 +14,7 @@ router.route('/')
             .then((resp) => {
                 Counter.create(counter)
                     .then((resp) => {
-                        res.redirect('/dashboard/admin')
+                        res.redirect('/dashboard')
                     })
                     .catch((err) => next(err))
             })

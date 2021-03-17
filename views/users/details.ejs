@@ -1,5 +1,6 @@
-<%- include('../partials/adminheader') %>
-<h1>User Details of <%= user.name %></h1>
+<!-- ADMIN ONLY -->
+<%- include('../partials/header') %>
+<h1>User Details of <%= trainee.name %></h1>
 <p>
 <% for(let detail of details){%>
     Date: <%= detail.date %>
