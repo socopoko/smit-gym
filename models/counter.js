@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const CounterSchema = new mongoose.Schema({
     count: {
-        type: Number
+        type: Number,
+        default: 0
     },
     date: {
         type: Date,
