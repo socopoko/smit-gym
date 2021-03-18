@@ -1,18 +1,46 @@
 <%- include('../partials/header') %>
 <%- include ('../partials/messages') %>
-<h1>Subscription Information of <%= user.name %></h1>
 
+<div class="container">
+        <div class="row  align-items-center mt-4">
+            <div class="col-auto">
+                <h1 class="display-4">Subscription</h1>
+            </div>
+        </div>
 
-<% if (subscription == null) { %>
-    <%- include('./form.ejs') %>
-<% } else if(subscription.date < subscription.expiry) { %>
-    <h2>You already have a subscription</h2>
-    <p>Expires on: <%= subscription.expiry.toDateString() %></p>
-    <p>Time slot: <%= subscription.timeslot %></p>
-<% } else { %>
-    <%- include('./form.ejs') %>
-<% } %>
+        <% if (subscription == null || Date.now() > subscription.expiry) { %>
 
+            <div class="row justify-content-center align-items-center">
+                <div class="col-auto mt-4">
+                    <div class="card shadow-sm p-3 bg-body rounded " style="min-width: 18rem;">
+                        <div class="card-body">
+                            <h1 class="card-title">💳 Pay Now</h1>
+                            <%- include('./form.ejs') %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <% } else if(Date.now() <= subscription.expiry) { %>
+            
+            <div class="row justify-content-center align-items-center">
+                <div class="col-auto mt-4">
+                    <div class="card shadow-lg p-3 mb-5 bg-body rounded " style="width: 18rem;">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstorage.googleapis.com%2Fcdn.magloft.com%2Fblog%2F2017%2F02%2Fmagloft-app-status.png&f=1&nofb=1" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Subscription Status</h5>
+                            <p class="card-text">
+                                <b>Expires on: </b><%= subscription.expiry.toDateString() %>
+                                <br>
+                                <b>Time slot: </b><%= subscription.timeslot %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <% } %>
+        
+</div>
 
 
 <script src="https://js.stripe.com/v3/"></script>
@@ -20,7 +48,13 @@
     const stripe = Stripe('pk_test_51IVquXFKW5qJydUO6aEmx8JVccXqVlifGKzEf7OhKPuOjWNASTS7oLw4beb2hLtKqsB19geaoKZoimfZ6f35uknh00IMekg4YZ')
     const elements = stripe.elements()
 
-
+    // Create card inputs
+    var style = {
+        base: {
+            color: "#fff"
+        }
+    };
+    
     const card = elements.create('card')
     card.mount('#card-element')
 

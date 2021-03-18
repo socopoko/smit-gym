@@ -1,20 +1,22 @@
 <form action="/subscription" method="POST">
-    <label for="amount">Subscription:</label>
-    <select name="amount" id="amount">
+    <label class="form-label" for="amount"><b>Subscription</b></label>
+    <select class="form-control" name="amount" id="amount">
         <option value="400" default>Rs. 400 - 1 months</option>
         <option value="800">Rs. 1200 - 3 months</option>
         <option value="1200">Rs. 2400 - 6 months</option>
         <option value="4800">Rs. 4800 - 12 months</option>
     </select>
     <br>
-    <label for="timeslot">Time-slot:</label>
-    <select name="timeslot" id="timeslot">
+    <label class="form-label"  for="timeslot"><b>Time slot</b></label>
+    <select class="form-control" name="timeslot" id="timeslot">
         <option value="6:00 AM - 8:00 AM" >6:00 AM - 8:00 AM</option>
         <option value="8:00 AM - 10:00 AM">8:00 AM - 10:00 AM</option>
         <option value="5:00 PM - 7:00 PM">5:00 PM - 7:00 PM</option>
         <option value="7:00 PM - 9:00 PM">7:00 PM - 9:00 PM</option>
     </select>
-    <div id="card-element"></div>
+    <br>
+    <label class="form-label" for="card-element"><b>Card details</b></label>
+    <div id="card-element" class="bg-transparent"></div>
     <div id="card-errors" role="alert"></div>
-    <button>Pay</button>
+    <button class="btn btn-primary mt-4">Pay</button>
 </form>

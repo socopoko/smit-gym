@@ -1,12 +1,28 @@
-<h1>Thank You</h1>
-<p>Your payment of Rs. <%= amount %> was successful.</p>
-
 <% var expiry = new Date() %>
 <% expiry.setDate(expiry.getDate() + (amount/400)*30) %>
 
 
-<form action="/subscription/new" method="POST">
-    <input type="text" name="expiry" value="<%= expiry %>" hidden>
-    <input type="text" name="timeslot" value="<%= timeslot %>" hidden>
-    <button type="submit">Return</button>
-</form>
+<div class="container">
+        <div class="row  justify-content-center align-items-center mt-4">
+            <div class="col-auto">
+                <h1 class="display-1">Thank You!</h1>
+            </div>
+        </div>
+            
+        <div class="row justify-content-center align-items-center">
+            <div class="col-auto mt-4">
+                <div class="card shadow-lg p-3 mb-5 bg-body rounded " style="min-width: 18rem;">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstorage.googleapis.com%2Fcdn.magloft.com%2Fblog%2F2017%2F02%2Fmagloft-app-status.png&f=1&nofb=1" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h6 class="card-title">Your payment of Rs. <%= amount %> was successful.</h6>
+                        <form action="/subscription/new" method="POST">
+                            <input type="text" name="expiry" value="<%= expiry %>" hidden>
+                            <input type="text" name="timeslot" value="<%= timeslot %>" hidden>
+                            <button type="submit" class="btn btn-success">Return</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
