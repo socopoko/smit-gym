@@ -7,6 +7,7 @@
     <% } else if(subscription.date < subscription.expiry) { %>
         <h2>Subscription Status: ✔ </h2>
         <p>Expires on: <%= subscription.expiry.toDateString() %></p>
+        <p>Time slot: <%= subscription.timeslot %></p>
     <% } else { %>
         <h2>Subscription Status: ❌</h2>
     <% } %>

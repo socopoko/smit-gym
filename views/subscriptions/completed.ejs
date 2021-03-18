@@ -6,8 +6,7 @@
 
 
 <form action="/subscription/new" method="POST">
-    <div>
-        <input type="text" name="expiry" value="<%= expiry %>" hidden>
-    </div>
+    <input type="text" name="expiry" value="<%= expiry %>" hidden>
+    <input type="text" name="timeslot" value="<%= timeslot %>" hidden>
     <button type="submit">Return</button>
 </form>

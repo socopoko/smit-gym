@@ -9,6 +9,10 @@ const SubscriptionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    timeslot: {
+        type: String,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now

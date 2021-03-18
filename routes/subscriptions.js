@@ -25,7 +25,7 @@ router.route('/')
                         customer: customer.id
                     })
                 )
-                .then(() => res.render('./subscriptions/completed.ejs', { user: req.user, amount: req.body.amount }))
+                .then(() => res.render('./subscriptions/completed.ejs', { user: req.user, amount: req.body.amount, timeslot: req.body.timeslot }))
                 .catch(err => console.log(err))
         } catch (err) {
             req.flash('error_msg', 'Payment Unsuccessful. Please try again.')
@@ -37,7 +37,8 @@ router.route('/new')
     .post(authenticate.ensureAuthenticated, async (req, res) => {
         const subscription = ({
             expiry: req.body.expiry,
-            user: req.user._id
+            user: req.user._id,
+            timeslot: req.body.timeslot
         })
 
         Subscription
@@ -47,7 +48,7 @@ router.route('/new')
                     .then((resp) => {
                         res.redirect('/dashboard')
                     })
-                    .catch((err) => next(err))
+                    .catch((err) => console.error(err))
             })
             .catch((err) => console.error(err))
     }) 

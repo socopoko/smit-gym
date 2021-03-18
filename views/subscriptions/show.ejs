@@ -4,32 +4,13 @@
 
 
 <% if (subscription == null) { %>
-    <form action="/subscription" method="POST">
-        <select name="amount" id="amount">
-            <option value="400" default>Rs. 400 - 1 months</option>
-            <option value="800">Rs. 1200 - 3 months</option>
-            <option value="1200">Rs. 2400 - 6 months</option>
-            <option value="4800">Rs. 4800 - 12 months</option>
-        </select>
-        <div id="card-element"></div>
-        <div id="card-errors" role="alert"></div>
-        <button>Pay</button>
-    </form>
+    <%- include('./form.ejs') %>
 <% } else if(subscription.date < subscription.expiry) { %>
     <h2>You already have a subscription</h2>
     <p>Expires on: <%= subscription.expiry.toDateString() %></p>
+    <p>Time slot: <%= subscription.timeslot %></p>
 <% } else { %>
-    <form action="/subscription" method="POST">
-        <select name="amount" id="amount">
-            <option value="400" default>Rs. 400 - 1 months</option>
-            <option value="800">Rs. 1200 - 3 months</option>
-            <option value="1200">Rs. 2400 - 6 months</option>
-            <option value="4800">Rs. 4800 - 12 months</option>
-        </select>
-        <div id="card-element"></div>
-        <div id="card-errors" role="alert"></div>
-        <button>Pay</button>
-    </form>
+    <%- include('./form.ejs') %>
 <% } %>
 
 
