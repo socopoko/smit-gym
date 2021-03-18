@@ -26,10 +26,10 @@ router.route('/new')
         try {
             const newDetail = await detail.save()
             req.flash('success_msg', 'Details sent!')
-            res.redirect('/dashboard')
+            res.redirect('/details')
         } catch {
             req.flash('error_msg', 'Details not sent. Please try again.')
-            res.redirect('/details')
+            res.redirect('/details/new')
         }
     })
 
