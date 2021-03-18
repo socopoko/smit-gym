@@ -1,17 +1,17 @@
 <% if(typeof errors != 'undefined') { %>
     <%  errors.forEach((error) => { %>
-            <p> <%= error.msg %> </p>
+            <center><p style="margin: 0.5rem;"><%= error.msg %></p></center>
     <% }) %>
 <% } %>
 
 <% if(success_msg!= '') { %>
-    <p> <%= success_msg %> </p>
+  <center><p style="margin: 0.5rem;"><%= success_msg %></p></center>
 <% } %>
 
 <% if(error_msg != '') { %>
-  <%= error_msg %> 
+  <center><p style="margin: 0.5rem;"><%= error_msg %></p></center>
 <% } %> 
 
 <% if(error != '') { %>
-  <%= error %>
+  <center><p style="margin: 0.5rem;"><%= error %></p></center>
 <% } %>

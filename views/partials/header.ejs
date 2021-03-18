@@ -1,21 +1,28 @@
-<hr>
 <header>
-    <nav>
-        <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/videolibrary">Video Library</a></li>
-            <% if(user.admin) { %>
-                <li><a href="/users">Users</a></li>
-                <li><a href="/videolibrary/new">Add Video</a></li>
-            <% } %>
-            <% if(!user.admin) { %>
-                <li><a href="/details/new">Send New Detail</a></li>
-                <li><a href="/details">Past Details</a></li>
-                <li><a href="/advices">Advices</a></li>
-                <li><a href="/subscription">Subscription</a></li>
-            <% } %>
-            <li><a href="/users/logout">Logout</a></li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">💪🏻 SMIT GYM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">            
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/videolibrary">Video Library</a>
+                    <% if(user.admin) { %>
+                        <a class="nav-link" href="/users">Users</a>
+                        <a class="nav-link" href="/videolibrary/new">Add Video</a>
+                    <% } %>
+                    <% if(!user.admin) { %>
+                        <a class="nav-link" href="/details/new">Send New Detail</a>
+                        <a class="nav-link" href="/details">Past Details</a>
+                        <a class="nav-link" href="/advices">Advices</a>
+                        <a class="nav-link" href="/subscription">Subscription</a>
+                    <% } %>
+                    <a class="nav-link" href="/users/logout">Logout</a>
+                </div>
+            </div>
+        </div>
     </nav>
 </header>
-<hr>

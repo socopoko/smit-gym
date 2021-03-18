@@ -25,6 +25,9 @@ app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
 app.use(expressEjsLayout)
 
+// Static Folder
+app.use(express.static(__dirname + '/public'))
+
 // BodyParser
 app.use(express.urlencoded({ extended: false}))
 

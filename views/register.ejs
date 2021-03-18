@@ -1,24 +1,47 @@
-<h1>Register</h1>
 <%- include ('./partials/messages') %>
 
-<form action="/users/register" method="POST">
-    <div>
-        <label for="name">Name</label>
-        <input type="name" name="name" placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>" />
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>" />
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Create Password" value="<%= typeof password != 'undefined' ? password : '' %>" />
-    </div>
-    <div >
-        <label for="password2">Confirm Password</label>
-        <input type="password" name="password2" placeholder="Confirm Password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
-    </div>
-    <button type="submit" class="btn btn-primary btn-block"> Register </button>
-</form>
+<div class="container">
 
-<p>Have An Account? <a href="/users/login">Login</a></p>
+    <div class="card shadow-lg p-3 mb-5 bg-body rounded " style="width: 20rem; margin: 10vh auto;">
+        <div class="row justify-content-center align-items-center mt-3">
+            <div class="col-auto">
+                <h1 class="card-title">Register</h1>
+            </div>
+       </div>
+
+       <div class="row justify-content-center align-items-center mt-3">
+           <div class="col-auto">
+               <form action="/users/register" method="POST">
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="name" class="form-control" name="name" placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Create Password" value="<%= typeof password != 'undefined' ? password : '' %>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="password2" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="password2" placeholder="Confirm Password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mb-3">Register</button>
+
+               </form>
+           </div>
+       </div> 
+
+       <div class="row justify-content-center align-items-center mt-3">
+             <div class="col-auto">
+                <i>Have An Account? <a href="/users/login">Login</a></i>
+             </div>
+       </div>
+
+    </div>   
+
+</div>

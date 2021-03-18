@@ -1,24 +1,74 @@
 <%- include('../partials/header') %>
 
-<h1>Dashboard</h1>
-<p> Welcome <%= user.name %> </p>
+<div class="container">
+        <div class="row  align-items-center mt-4">
+            <div class="col-auto">
+                <h1 class="display-4">Dashboard</h1>
+                <p class="lead"> Welcome <%= user.name %></p>
+            </div>
+        </div>
 
-<% if(user.admin) { %>
-    <form action="/counter" method="POST">
-        <label for="count">Counter</label>
-        <input type="number" name="count" id="count">
-        <button type="submit">Submit</button>
-    </form>
-<% } %>
-<% if(!user.admin) { %>
-    <% if (subscription == null) { %>
-        <h2>Subscription Status: ❌</h2>
-    <% } else if(subscription.date < subscription.expiry) { %>
-        <h2>Subscription Status: ✔ </h2>
-        <p>Expires on: <%= subscription.expiry.toDateString() %></p>
-        <p>Time slot: <%= subscription.timeslot %></p>
-    <% } else { %>
-        <h2>Subscription Status: ❌</h2>
-    <% } %>
-<% } %>
-<h1>Display Gym Counter: <%= counter[0].count %></h1>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-auto mt-2">
+                <div class="card shadow-sm bg-body rounded" style="min-width: 18rem;">
+                    <div class="card-body">
+                        <h3 class="card-title">🔴 Live Counter: <%= counter[0].count %></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% if(user.admin) { %>
+            
+            <div class="row justify-content-center align-items-center">
+                <div class="col-auto mt-4">
+                    <div class="card shadow-sm bg-body rounded" style="min-width: 18rem;">
+                        <div class="card-body">
+                            <form action="/counter" method="POST">
+                                <label for="count" class="form-label"><h3>Set Counter</h3></label>
+                                <input type="number" class="form-control"  name="count" id="count">
+                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+
+        <% if(!user.admin) { %>
+            <% if (subscription == null || Date.now() > subscription.expiry) { %>
+
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-auto mt-4">
+                        <div class="card shadow-sm p-3 bg-body rounded " style="width: 18rem;">
+                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2014%2F03%2F24%2F17%2F21%2Fwrong-295503_960_720.png&f=1&nofb=1" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Subscription Status</h5>
+                                <p class="card-text">You do not have an active subscription.
+                                <a href="/subscription" class="btn btn-dark mt-3">Renew Subscription</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <% } else if(Date.now() <= subscription.expiry) { %>
+                
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-auto mt-4">
+                        <div class="card shadow-lg p-3 mb-5 bg-body rounded " style="width: 18rem;">
+                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstorage.googleapis.com%2Fcdn.magloft.com%2Fblog%2F2017%2F02%2Fmagloft-app-status.png&f=1&nofb=1" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Subscription Status</h5>
+                                <p class="card-text">
+                                    Expires on: <%= subscription.expiry.toDateString() %>
+                                    <br>
+                                    Time slot: <%= subscription.timeslot %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            <% } %>
+        <% } %>
+</div>
