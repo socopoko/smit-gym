@@ -3,11 +3,12 @@
     <nav>
         <ul>
             <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/videolibrary">Video Library</a></li>
             <% if(user.admin) { %>
                 <li><a href="/users">Users</a></li>
+                <li><a href="/videolibrary/new">Add Video</a></li>
             <% } %>
             <% if(!user.admin) { %>
-                <li><a href="/videolibrary">Video Library</a></li>
                 <li><a href="/details/new">Send New Detail</a></li>
                 <li><a href="/details">Past Details</a></li>
                 <li><a href="/advices">Advices</a></li>

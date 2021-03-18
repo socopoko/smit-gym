@@ -100,7 +100,7 @@ router.route('/logout')
 // all users (admin)
 router.route('/')
     .get(authenticate.ensureAuthenticated, authenticate.ensureAdmin, async (req, res) => {
-        let query = User.find()
+        let query = User.find({ "admin": false })
         if(req.query.name != null && req.query.name != '') {
             query = query.regex('name', new RegExp(req.query.name, 'i'))
         }
@@ -108,7 +108,6 @@ router.route('/')
             query = query.regex('email', new RegExp(req.query.email, 'i'))
         }
         try {
-            const nonAdminUsers = await User.find({ "admin": false })
             const users = await query.exec()
             res.render('./users/show.ejs', { user: req.user, users, searchOptions: req.query })
         } catch {

@@ -1,2 +1,26 @@
 <%- include('../partials/header') %>
+<%- include ('../partials/messages') %>
+
 <h1>Video Library</h1>
+
+<div>
+    <form action="/videolibrary" method="GET">
+        <div>
+            <input type="text" name="title" value="<%= searchOptions.title %>">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+</div>
+
+
+
+<div>
+    <% for(let video of videos) { %> 
+        <div>
+            <iframe src="<%= video.url %>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+                            picture-in-picture" allowfullscreen></iframe>
+            <h4><%= video.title %></h4>
+            <p><%= video.description %></p>
+        </div>
+    <% } %>
+</div>
