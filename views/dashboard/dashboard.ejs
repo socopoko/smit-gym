@@ -39,7 +39,7 @@
         <% if(!user.admin) { %>
             <% if (subscription == null || Date.now() > subscription.expiry) { %>
 
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-center align-items-center mb-4">
                     <div class="col-auto mt-4">
                         <div class="card shadow-sm p-3 bg-body rounded " style="width: 18rem;">
                             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2014%2F03%2F24%2F17%2F21%2Fwrong-295503_960_720.png&f=1&nofb=1" class="card-img-top" alt="...">
@@ -54,7 +54,7 @@
 
             <% } else if(Date.now() <= subscription.expiry) { %>
                 
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-center align-items-center mb-4">
                     <div class="col-auto mt-4">
                         <div class="card shadow-lg p-3 mb-5 bg-body rounded " style="width: 18rem;">
                             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstorage.googleapis.com%2Fcdn.magloft.com%2Fblog%2F2017%2F02%2Fmagloft-app-status.png&f=1&nofb=1" class="card-img-top" alt="...">

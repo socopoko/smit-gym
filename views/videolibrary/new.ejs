@@ -1,22 +1,32 @@
 <%- include('../partials/header') %>
 <%- include ('../partials/messages') %>
 
-<h1>Add Video Form</h1>
+<div class="container">
+    <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 20rem; margin: 6vh auto;">
+        <div class="row justify-content-center align-items-center mt-3">
+            <div class="col-auto">
+                <h1 class="card-title">🎥 Add Video</h1>
+            </div>
+       </div>
 
-
-<form action="/videolibrary/new" method="POST">
-    <div>
-        <label for="title">Title: </label>
-        <input type="text" name="title" id="title">
-    </div>
-    <div>
-        <label for="description">Description: </label>
-        <br>
-        <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    </div>
-    <div>
-        <label for="url">URL: </label>
-        <input type="text" name="url" id="url">
-    </div>
-    <button type="submit">Submit</button>
-</form>
+       <div class="row justify-content-center align-items-center">
+           <div class="col-auto">
+                <form action="/videolibrary/new" method="POST">
+                    <div class="mt-2">
+                        <label class="form-label" for="title">Title:</label>
+                        <input class="form-control" type="text" name="title" id="title" placeholder="Enter title">
+                    </div>
+                    <div class="mt-2">
+                        <label class="form-label" for="description">Description:</label>
+                        <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Give a description"></textarea>
+                    </div>
+                    <div class="mt-2">
+                        <label class="form-label" for="url">URL:</label>
+                        <input class="form-control" type="text" name="url" id="url" placeholder="Paste URL of the video">
+                    </div>
+                    <button class="btn btn-primary mt-4" type="submit">Submit</button>
+                </form>
+           </div>
+       </div> 
+    </div>   
+</div>

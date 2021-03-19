@@ -1,16 +1,50 @@
 <!-- ADMIN ONLY -->
 <%- include('../partials/header') %>
-<h1>Subscription Details of <%= trainee.name %></h1>
-<p>
-    <% if (subscription == null) { %>
-        <h2>Subscription Status: ❌</h2>
-    <% } else if(subscription.date < subscription.expiry) { %>
-        <h2>Subscription Status: ✔ </h2>
-        <p>Expires on: <%= subscription.expiry.toDateString() %></p>
-        <p>Time slot: <%= subscription.timeslot %></p>
-    <% } else { %>
-        <h2>Subscription Status: ❌</h2>
-    <% } %>
-</p>
 
+<div class="container">
+        <div class="row  align-items-center mt-4">
+            <div class="col-auto">
+                <h1 class="display-4">Subscription Status</h1>
+            </div>
+        </div>
+        
+        <% if (subscription == null || Date.now() > subscription.expiry) { %>
 
+            <div class="row justify-content-center align-items-center mt-4">
+                <div class="col-auto mt-4">
+                    <div class="card shadow-sm p-3 bg-body rounded " style="width: 18rem;">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2014%2F03%2F24%2F17%2F21%2Fwrong-295503_960_720.png&f=1&nofb=1" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Subscription Status</h5>
+                            <p class="card-text">No active subscription.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <% } else if(Date.now() <= subscription.expiry) { %>
+            
+            <div class="row justify-content-center align-items-center mt-4">
+                <div class="col-auto mt-4">
+                    <div class="card shadow-lg p-3 mb-5 bg-body rounded " style="width: 18rem;">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstorage.googleapis.com%2Fcdn.magloft.com%2Fblog%2F2017%2F02%2Fmagloft-app-status.png&f=1&nofb=1" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Subscription Status</h5>
+                            <p class="card-text">
+                                <b>Expires on: </b><%= subscription.expiry.toDateString() %>
+                                <br>
+                                <b>Time slot: </b><%= subscription.timeslot %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <% } %>
+
+        <div class="row justify-content-center align-items-center mt-4">
+            <div class="col-auto">
+                <a class="btn btn-dark" href="/users">Return</a>
+            </div>
+        </div>
+      
+</div>

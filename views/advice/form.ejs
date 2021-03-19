@@ -1,26 +1,39 @@
 <!-- ADMIN ONLY -->
 <%- include('../partials/header') %>
 
-<h1>Give Advice to <%= trainee.name %></h1>
+<div class="container">
+    <div class="row justify-content-center align-items-center mt-5">
+        <div class="col-auto">
+             <div class="card shadow-lg p-4 mb-5 bg-body rounded ">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <h1 class="card-title">📝 Give Advice</h1>
+                    </div>
+                </div>
 
-<form action="/advices" method="POST">
-    <div>
-        <input type="text" name="user" value="<%= trainee.id %>" hidden>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-auto">
+                        <form action="/advices" method="POST">
+                            <div>
+                                <input type="text" name="user" value="<%= trainee.id %>" hidden>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label" for="workout">Workout details: </label>
+                                <textarea class="form-control" name="workout" id="workout" cols="30" rows="5" placeholder="Assign a workout plan"></textarea>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label" for="diet">Diet details: </label>
+                                <textarea class="form-control" name="diet" id="diet" cols="30" rows="5" placeholder="Assign a diet plan"></textarea>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label" for="others">Others: </label>
+                                <textarea class="form-control" name="others" id="others" cols="30" rows="2" placeholder="Any other instruction"></textarea>
+                            </div>
+                            <button class="btn btn-primary mt-4" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div> 
+             </div>
+        </div>
     </div>
-    <div>
-        <label for="workout">Workout details: </label>
-        <br>
-        <textarea name="workout" id="workout" cols="30" rows="10"></textarea>
-    </div>
-    <div>
-        <label for="diet">Diet details: </label>
-        <br>
-        <textarea name="diet" id="diet" cols="30" rows="10"></textarea>
-    </div>
-    <div>
-        <label for="others">Others: </label>
-        <br>
-        <textarea name="others" id="others" cols="30" rows="10"></textarea>
-    </div>
-    <button type="submit">Submit</button>
-</form>
+</div>

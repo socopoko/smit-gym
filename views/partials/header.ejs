@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">💪🏻 SMIT GYM</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -11,8 +11,8 @@
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                     <a class="nav-link" href="/videolibrary">Video Library</a>
                     <% if(user.admin) { %>
-                        <a class="nav-link" href="/users">Users</a>
                         <a class="nav-link" href="/videolibrary/new">Add Video</a>
+                        <a class="nav-link" href="/users">Users</a>
                     <% } %>
                     <% if(!user.admin) { %>
                         <a class="nav-link" href="/details/new">Send New Detail</a>

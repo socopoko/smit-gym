@@ -4,6 +4,12 @@ html {
 }
 
 body {
-    background-color: palegoldenrod;
+    background-color: rgba(238, 232, 170, 0.747);
+    /* background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F16%2F40%2FXzCSrf.jpg&f=1&nofb=1'); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /* background-blend-mode: color-burn; */
+    margin-top: 10vh;
 }
 
